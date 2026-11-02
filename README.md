@@ -125,3 +125,4 @@ ADMIN_SETUP_SECRET=your-secure-admin-secret
 الأيقونات مرخصة تحت رخصة MIT من مكتبة Lucide.
 الخطوط مرخصة تحت SIL Open Font License من Google Fonts.
 الأصول الفنية الأصلية مصممة خصيصاً لمشروع Mafia Arena.
+

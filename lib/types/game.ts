@@ -71,6 +71,7 @@ export interface RoomSettings {
   allowDoctorSelfProtect: boolean;
   tieVotePolicy: 'revote' | 'no_elimination' | 'leader_decides';
   enabledRoleSlugs: string[];
+  roleQuantities?: Record<string, number>;
 }
 
 export interface RoomPlayer {
@@ -152,3 +153,4 @@ export interface PublicGameSnapshot {
     created_at: string;
   }>;
 }
+

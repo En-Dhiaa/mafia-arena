@@ -194,7 +194,6 @@ class RoomStore {
   ): {
     role: CharacterRole | null;
     isLeader: boolean;
-    allRolesIfLeader?: Array<{ playerId: string; playerName: string; role: CharacterRole }>;
     teamMembersIfMafia?: Array<{ playerId: string; playerName: string }>;
   } {
     const room = this.rooms.get(code.toUpperCase());
@@ -206,15 +205,8 @@ class RoomStore {
     const role = room.secretRoles.get(requestingPlayer.id) || null;
     const isLeader = room.game.leader_player_id === requestingPlayer.id;
 
-    let allRolesIfLeader: Array<{ playerId: string; playerName: string; role: CharacterRole }> | undefined;
-    if (isLeader) {
-      allRolesIfLeader = room.players.map((p) => ({
-        playerId: p.id,
-        playerName: p.display_name,
-        role: room.secretRoles.get(p.id) || DEFAULT_ROLES[9],
-      }));
-    }
-
+    // Strict confidentiality: The host / supervisor NEVER knows anyone's card!
+    // No player knows anyone else's role; only mafia knows fellow mafia display names.
     let teamMembersIfMafia: Array<{ playerId: string; playerName: string }> | undefined;
     if (role && role.team === 'mafia') {
       teamMembersIfMafia = room.players
@@ -225,7 +217,7 @@ class RoomStore {
         .map((p) => ({ playerId: p.id, playerName: p.display_name }));
     }
 
-    return { role, isLeader, allRolesIfLeader, teamMembersIfMafia };
+    return { role, isLeader, teamMembersIfMafia };
   }
 
   public startGame(
@@ -249,9 +241,13 @@ class RoomStore {
       };
     }
 
-    // Distribute roles
+    // Distribute roles automatically & secretly (Host does NOT see anyone's card)
     const playerIds = room.players.map((p) => p.id);
-    const distributed = distributeRoles(playerIds, room.settings.enabledRoleSlugs);
+    const distributed = distributeRoles(
+      playerIds,
+      room.settings.enabledRoleSlugs,
+      room.settings.roleQuantities
+    );
     room.secretRoles = distributed;
 
     // Transition state
@@ -502,3 +498,4 @@ class RoomStore {
 
 // Global Singleton for in-memory game engine
 export const roomStore = new RoomStore();
+

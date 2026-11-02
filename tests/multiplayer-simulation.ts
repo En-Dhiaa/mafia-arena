@@ -59,10 +59,11 @@ if (!hostRole.role || !p2Role.role || !p3Role.role || !p4Role.role) {
   process.exit(1);
 }
 
-if (p2Role.allRolesIfLeader !== undefined) {
-  console.error('❌ Security breach: normal player received all roles list!');
+if ((hostRole as Record<string, unknown>).allRolesIfLeader !== undefined || (p2Role as Record<string, unknown>).allRolesIfLeader !== undefined) {
+  console.error('❌ Security breach: secret roles leaked to host or player!');
   process.exit(1);
 }
+console.log('   🔒 Strict role confidentiality confirmed: Host and guests receive ONLY their own card!');
 
 // Night Phase Transition
 console.log('\n🌙 Advancing to Night Phase...');
@@ -107,3 +108,4 @@ console.log(`   -> Player 3 eliminated status (is_alive): ${p3Status?.is_alive}`
 console.log('\n=============================================');
 console.log(' 🌟 MULTIPLAYER SIMULATION PASSED 100% CLEAN!');
 console.log('=============================================\n');
+

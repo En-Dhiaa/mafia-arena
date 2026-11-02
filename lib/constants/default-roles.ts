@@ -256,3 +256,4 @@ export const DEFAULT_ROLES: CharacterRole[] = [
     sort_order: 11,
   },
 ];
+

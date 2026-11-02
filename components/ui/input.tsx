@@ -16,7 +16,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={generatedId}
-            className="block text-xs font-semibold text-slate-300 uppercase tracking-wider"
+            className="block text-xs font-bold text-slate-700 dark:text-slate-300 tracking-wider"
           >
             {label}
           </label>
@@ -25,15 +25,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={generatedId}
           ref={ref}
           className={cn(
-            'w-full bg-noir-card/90 text-slate-100 placeholder-slate-500 text-sm px-4 py-3 rounded-lg border border-noir-border',
-            'focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 transition-all duration-200',
-            error && 'border-red-500/80 focus:border-red-500 focus:ring-red-500/40',
+            'w-full bg-white dark:bg-noir-card/90 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm px-4 py-3 rounded-xl border border-slate-300 dark:border-noir-border shadow-sm',
+            'focus:outline-none focus:border-amber-500 dark:focus:border-gold-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:ring-gold-500/30 transition-all duration-200',
+            error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
             className
           )}
           {...props}
         />
-        {error && <p className="text-xs text-red-400 font-medium">{error}</p>}
-        {helperText && !error && <p className="text-xs text-slate-400">{helperText}</p>}
+        {error && <p className="text-xs text-red-500 font-semibold">{error}</p>}
+        {helperText && !error && <p className="text-xs text-slate-500 dark:text-slate-400">{helperText}</p>}
       </div>
     );
   }

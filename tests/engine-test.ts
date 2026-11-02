@@ -86,8 +86,11 @@ assert(start.success, 'Game started successfully');
 const hostRole = roomStore.getPlayerRole(room.code, room.guestToken);
 const guestRole = roomStore.getPlayerRole(room.code, join2.guestToken!);
 assert(hostRole.role !== null && guestRole.role !== null, 'Roles distributed');
-assert(guestRole.allRolesIfLeader === undefined, 'Guest cannot view secret roles of other players');
+// Verify strict privacy: Neither host nor guest can see any other player's card
+assert((hostRole as Record<string, unknown>).allRolesIfLeader === undefined, 'Strict Secrecy: Host cannot view other players secret cards');
+assert((guestRole as Record<string, unknown>).allRolesIfLeader === undefined, 'Guest cannot view secret roles of other players');
 
 console.log('\n=============================================');
 console.log(` ALL ${passed}/${total} AUTOMATED TESTS PASSED!`);
 console.log('=============================================\n');
+

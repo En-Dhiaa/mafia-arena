@@ -129,3 +129,4 @@ ON CONFLICT (slug) DO UPDATE SET
     abilities_en = EXCLUDED.abilities_en,
     special_rules = EXCLUDED.special_rules,
     updated_at = NOW();
+

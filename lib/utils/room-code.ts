@@ -13,3 +13,4 @@ export function generateRoomCode(): string {
 export function generateGuestToken(): string {
   return 'gst_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
+

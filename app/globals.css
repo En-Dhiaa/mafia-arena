@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================================
+   MAFIA ARENA — THEME VARIABLES (LIGHT DEFAULT & DARK NOIR)
+   ======================================================== */
+
 :root {
-  --bg-primary: #07070a;
-  --bg-secondary: #0d0e15;
-  --bg-card: #151722;
-  --border-card: #26293d;
+  /* LIGHT MODE (Default as requested) */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-muted: #f1f5f9;
+  --border-theme: #e2e8f0;
+  --border-gold: rgba(217, 119, 6, 0.3);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --gold-primary: #d97706;
+  --gold-hover: #b45309;
+  --gold-glow: rgba(217, 119, 6, 0.2);
+}
+
+.dark {
+  /* DARK MODE (Cinematic Noir) */
+  --bg-page: #07070a;
+  --bg-surface: #151722;
+  --bg-surface-muted: #0d0e15;
+  --border-theme: #26293d;
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8c92a4;
   --gold-primary: #d4af37;
+  --gold-hover: #fbbf24;
   --gold-glow: rgba(212, 175, 55, 0.3);
 }
 
@@ -17,14 +42,17 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #07070a;
+  background: var(--bg-page);
 }
 ::-webkit-scrollbar-thumb {
-  background: #26293d;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #26293d;
+}
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: var(--gold-primary);
 }
 
 /* 3D Card Flip Essentials */
@@ -42,35 +70,36 @@
   transform: rotateY(180deg);
 }
 
-/* Day vs Night Atmospheric Transitions */
+/* Base Body Styles */
 body {
-  background-color: #07070a;
-  color: #f8fafc;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   font-family: var(--font-cairo), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.8s ease, color 0.8s ease;
+  touch-action: manipulation;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-body.in-game-day {
-  background-color: #0f172a;
-}
-
+/* In-game Night Mode Dynamic Dimming */
 body.in-game-night {
-  background-color: #050508;
+  background-color: #050508 !important;
+  color: #f8fafc !important;
 }
 
 /* Glassmorphism utility */
 .glass-panel {
-  background: rgba(21, 23, 34, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--border-theme);
+}
+.dark .glass-panel {
+  background: rgba(21, 23, 34, 0.85);
+  border: 1px solid var(--border-gold);
 }
 
-.glass-panel-hover {
-  transition: all 0.3s ease;
-}
-.glass-panel-hover:hover {
-  border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2);
+/* Mobile Touch Optimization */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }

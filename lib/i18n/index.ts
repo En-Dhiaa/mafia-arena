@@ -58,3 +58,4 @@ export function t(
 
   return text;
 }
+

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Cairo, Cinzel } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/navigation/navbar';
@@ -17,6 +17,17 @@ const cinzel = Cinzel({
   display: 'swap',
   weight: ['600', '700', '800', '900'],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+    { media: '(prefers-color-scheme: dark)', color: '#07070a' },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
@@ -53,8 +64,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${cinzel.variable}`}>
-      <body className="min-h-screen flex flex-col bg-obsidian-950 text-slate-100 antialiased selection:bg-gold-500 selection:text-obsidian-950">
+    <html lang="ar" dir="rtl" className={`light ${cairo.variable} ${cinzel.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var savedTheme = localStorage.getItem('mafia_theme');
+                if (savedTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                } else {
+                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-obsidian-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-white transition-colors duration-300">
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />

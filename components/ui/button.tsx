@@ -30,21 +30,21 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const baseStyles =
-      'inline-flex items-center justify-center font-bold tracking-wide rounded-lg transition-all duration-200 select-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-obsidian-950 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98]';
+      'inline-flex items-center justify-center font-bold tracking-wide rounded-xl transition-all duration-200 select-none focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98] shadow-sm';
 
     const variants = {
       primary:
-        'bg-gradient-to-r from-gold-500 to-amber-600 text-obsidian-950 hover:from-gold-400 hover:to-amber-500 shadow-lg shadow-gold-500/20 border border-gold-400/40 focus:ring-gold-400',
+        'bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 dark:from-gold-500 dark:to-amber-600 text-white dark:text-obsidian-950 hover:from-amber-600 hover:to-amber-800 dark:hover:from-gold-400 dark:hover:to-amber-500 shadow-amber-500/20 dark:shadow-gold-500/20 border border-amber-400/40 dark:border-gold-400/40 focus:ring-amber-500',
       mafia:
-        'bg-gradient-to-r from-red-700 to-rose-900 text-white hover:from-red-600 hover:to-rose-800 shadow-lg shadow-red-900/30 border border-red-500/30 focus:ring-red-500',
+        'bg-gradient-to-r from-red-600 to-rose-800 dark:from-red-700 dark:to-rose-900 text-white hover:from-red-700 hover:to-rose-900 shadow-red-600/30 border border-red-500/30 focus:ring-red-500',
       citizen:
-        'bg-gradient-to-r from-blue-700 to-cyan-900 text-white hover:from-blue-600 hover:to-cyan-800 shadow-lg shadow-blue-900/30 border border-blue-500/30 focus:ring-blue-500',
+        'bg-gradient-to-r from-blue-600 to-indigo-800 dark:from-blue-700 dark:to-cyan-900 text-white hover:from-blue-700 hover:to-indigo-900 shadow-blue-600/30 border border-blue-500/30 focus:ring-blue-500',
       secondary:
-        'bg-noir-card text-slate-200 hover:bg-obsidian-700 border border-noir-border hover:border-gold-500/40 focus:ring-slate-400',
+        'bg-white dark:bg-noir-card text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-obsidian-700 border border-slate-300 dark:border-noir-border hover:border-amber-500/40 focus:ring-slate-400',
       outline:
-        'bg-transparent text-gold-400 border border-gold-500/50 hover:bg-gold-500/10 focus:ring-gold-400',
+        'bg-transparent text-amber-700 dark:text-gold-400 border border-amber-400 dark:border-gold-500/50 hover:bg-amber-50 dark:hover:bg-gold-500/10 focus:ring-amber-500',
       ghost:
-        'bg-transparent text-slate-300 hover:bg-noir-card/60 hover:text-white focus:ring-gold-400',
+        'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-noir-card/60 hover:text-slate-900 dark:hover:text-white focus:ring-amber-500 shadow-none',
     };
 
     const sizes = {

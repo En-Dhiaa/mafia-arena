@@ -177,3 +177,4 @@ CREATE POLICY "Public read assets" ON public.assets FOR SELECT USING (true);
 -- CONFIDENTIAL POLICIES:
 -- Player roles can only be read by authorized service_role or server API.
 -- Direct client access to player_roles is prohibited to prevent leaking secret identities.
+
